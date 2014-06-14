@@ -4,16 +4,13 @@
 
 class BounceHandlerHooks { 
 
-	public static function onVERPAddressGenerate( $to, &$from )	{
-		echo "hi";
-		$from->address = self::generateVERP( $to->address );
+	public static function onVERPAddressGenerate( $recip, $from, $headers )	{
+		$from->address = self::generateVERP( $recip->address );
 		return 	true;
 	}
 	/**
 	 * Generate VERP address
-	 *
 	 * @param $to
-	 *
 	 * @return ReturnPath address
 	 */
 	protected static function generateVERP( $to ) {
