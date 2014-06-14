@@ -5,6 +5,7 @@
 class BounceHandlerHooks { 
 
 	public static function onVERPAddressGenerate( $recip, $from, $headers )	{
+		global $wgEnableVERP;
 		if ( $wgEnableVERP ) {
 		$from->address = self::generateVERP( $recip->address );
 		}
