@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"tonythomas01"
+			"legoktm"
+			"jgreen"
+		]
+	},
+	"bouncehandler-welcome": "{{ Bounce Handler welcome message }}"
+}

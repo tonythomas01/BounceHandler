@@ -11,24 +11,17 @@ $wgExtensionCredits['validextensionclass'][] = array(
     'license-name' => "GPL V2.0",   // Short name of the license, links LICENSE or COPYING file if existing - string, added in 1.23.0
 );
 /* Setup*/
-$dir = dirname( __FILE__ ) . '/';
+$dir = dirname( __FILE__ );
 $dirbasename = basename( $dir );
 
 //Autoload Files 
 $wgAutoloadClasses['SpecialBounceHandler'] = $dir . '/specials/SpecialBounceHandler.php';
 
 /*Messages Files */
-$wgMessagesDirs['BounceHandler'] = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles['BounceHandler'] = $dir . 'InputBox.i18n.php';
+$wgMessagesDirs['BounceHandler'] = $dir. '/i18n';
+$wgExtensionMessagesFiles['BounceHandler'] = $dir . '/BounceHandler.alias.php';
 
 // Register special pages
 // See also http://www.mediawiki.org/wiki/Manual:Special_pages
 $wgSpecialPages['BounceHandler'] = 'SpecialBounceHandler';
 $wgSpecialPageGroups['BounceHandler'] = 'other';
-
-// Enable Welcome
-// Example of a configuration setting to enable the 'Welcome' feature:
-$wgExampleEnableWelcome = true;
-
-
-?>
