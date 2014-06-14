@@ -16,6 +16,8 @@ $dirbasename = basename( $dir );
 
 //Autoload Files 
 $wgAutoloadClasses['SpecialBounceHandler'] = $dir . '/specials/SpecialBounceHandler.php';
+//Hooks files 
+$wgAutoloadClasses['BounceHandlerHooks'] =  $dir. '/BounceHandler.hooks.php';
 
 /*Messages Files */
 $wgMessagesDirs['BounceHandler'] = $dir. '/i18n';
@@ -25,3 +27,8 @@ $wgExtensionMessagesFiles['BounceHandler'] = $dir . '/BounceHandler.alias.php';
 // See also http://www.mediawiki.org/wiki/Manual:Special_pages
 $wgSpecialPages['BounceHandler'] = 'SpecialBounceHandler';
 $wgSpecialPageGroups['BounceHandler'] = 'other';
+
+
+
+//Register Hooks
+$wgHooks['VERPAddressGenerate'][] = 'BounceHandlerHooks::onVERPAddressGenerate';
