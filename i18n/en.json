@@ -3,5 +3,6 @@
 		"authors": [
 			]
 	},
-	"bouncehandler-welcome": "Welcome to Boucne Handler"
+	"bouncehandler-welcome": "Welcome to Boucne Handler",
+	"bouncehandler-button" : "Run clearance script"
 }
