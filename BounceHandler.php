@@ -14,8 +14,6 @@ $wgExtensionCredits['validextensionclass'][] = array(
 $dir = dirname( __FILE__ );
 $dirbasename = basename( $dir );
 
-//Autoload Files 
-$wgAutoloadClasses['SpecialBounceHandler'] = $dir . '/specials/SpecialBounceHandler.php';
 //Hooks files 
 $wgAutoloadClasses['BounceHandlerHooks'] =  $dir. '/BounceHandler.hooks.php';
 
