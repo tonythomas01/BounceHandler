@@ -25,7 +25,7 @@ class BounceHandlerClearance extends Maintenance {
 
 		# start bounce classs
                 error_reporting(0);  //remove unwanted error reportings
-                require_once ( dirname(__FILE__). "/PHP_Bounce_Handler/bounce_driver.class.php";
+                require_once ( dirname(__FILE__). "/PHP_Bounce_Handler/bounce_driver.class.php" );
                 $bouncehandler = new Bouncehandler();
 
 		# get the failures
