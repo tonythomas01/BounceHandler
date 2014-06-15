@@ -29,4 +29,14 @@ class BounceHandlerHooks {
 		$returnPath = $email_prefix.'-'.$verp_hash.'@'.$email_domain;
 		return $returnPath;
 	}
+	/*
+	* Add tables 
+	*/
+	public static function AddTable( DatabaseUpdater $updater ) {
+		$updater->addExtensionTable( 
+					'bounce_records',
+					dirname( __FILE__ ) . '/sql/BH_CreateBounceTable.sql', true 
+				);
+		return true;
+	}
 }
