@@ -8,8 +8,7 @@ class BounceHandlerClearance extends Maintenance {
 		$this->addArg( "imappass", "IMAP account Password", false );
 	}
 	public function execute() {
-		global $wgServer, $wgIMAPuser, $wgIMAPpass, $wgIMAPserver;
-		echo $wgIMAPserver;
+		global $wgIMAPuser, $wgIMAPpass, $wgIMAPserver;
 		$imapuser = $this->getArg( 0 );
 		$imappass = $this->getArg( 1 );
 		if ( !is_object( $imapuser ) && ( $wgIMAPuser === null) ) {
@@ -21,9 +20,9 @@ class BounceHandlerClearance extends Maintenance {
 		if ( $wgIMAPserver === null ) {
 			$this->error( "invalid IMAP server.", true );
 		}
-		$conn = imap_open( $wgIMAPServer, $wgIMAPuser, $wgIMAPpass ) or die( imap_last_error() );
+		$conn = imap_open( $wgIMAPesrver, $wgIMAPuser, $wgIMAPpass ) or die( imap_last_error() );
 		$num_msgs = imap_num_recent( $conn );
-		echo $num_msgs();
+		echo $num_msgs ;
 	}
 }
 $maintClass = 'BounceHandlerClearance';

@@ -40,7 +40,7 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::AddTable';
  * md2. md4, md5, sha1, sha224, sha256, sha384, ripemd128, ripemd160, whirlpool and more.
  * wgVERPsecret - The secret key to hash the return path address
  */
-$wgEnableVERP = true;
+$wgEnableVERP = false;
 $wgVERPalgo = 'md5';
 $wgVERPsecret = 'MediaiwkiVERP';
 
