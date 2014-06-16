@@ -1,10 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"tonythomas01"
-			"legoktm"
-			"jgreen"
+			"Tony Thomas"
 		]
 	},
-	"bouncehandler-welcome": "{{ Bounce Handler welcome message }}"
+	"bouncehandler-desc": "{{desc|name=Bounce Handler|url=https://github.com/wikimedia/mediawiki-extensions-BounceHandler}}"
 }

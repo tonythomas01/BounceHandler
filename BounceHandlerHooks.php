@@ -7,14 +7,14 @@ class BounceHandlerHooks {
 	public static function onVERPAddressGenerate( $recip, $from, $headers )	{
 		global $wgEnableVERP;
 		if ( $wgEnableVERP ) {
-		$from->address = self::generateVERP( $recip->address );
+			$from->address = self::generateVERP( $recip->address );
 		}
-		return 	true;
+	return true;
 	}
 	/**
 	 * Generate VERP address
-	 * @param $to
-	 * @return ReturnPath address
+	 * @param string reciepient email
+	 * @return string ReturnPath address
 	 */
 	protected static function generateVERP( $to ) {
 		global $wgVERPalgo, $wgVERPsecret, $wgServer, $wgSMTP;
@@ -30,13 +30,13 @@ class BounceHandlerHooks {
 		return $returnPath;
 	}
 	/*
-	* Add tables 
+	* Add tables to DataBase
 	*/
 	public static function AddTable( DatabaseUpdater $updater ) {
-		$updater->addExtensionTable( 
-					'bounce_records',
-					dirname( __FILE__ ) . '/sql/BH_CreateBounceTable.sql', true 
-				);
-		return true;
+		$updater->addExtensionTable(
+			'bounce_records',
+			__DIR__. '/sql/bounce_records.sql', true 
+			);
+	return true;
 	}
 }

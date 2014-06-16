@@ -1,7 +1,7 @@
-<?php 
+<?php
 require_once ( dirname(__FILE__). "/../../maintenance/Maintenance.php");
 class BounceHandlerClearance extends Maintenance {
-	public function __construct() { 
+	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Connect to IMAP server and take action on bounces";
 		$this->addArg( "imapuser", "IMAP account Username", false );
@@ -11,16 +11,20 @@ class BounceHandlerClearance extends Maintenance {
 		global $wgIMAPuser, $wgIMAPpass, $wgIMAPserver;
 		$imapuser = $this->getArg( 0 );
 		$imappass = $this->getArg( 1 );
-		if ( !is_object( $imapuser ) && ( $wgIMAPuser === null) ) {
+		if ( !( $imapuser ) && ( $wgIMAPuser === null ) ) {
 			$this->error( "invalid IMAP username.", true );
+		} else {
+			$imapuser = ( ( $wgIMAPuser === null ) ? $imapuser : $wgIMAPuser );
 		}
-		if ( !is_object( $imappass ) && ( $wgIMAPpass === null )) {
+		if ( !( $imappass ) && ( $wgIMAPpass === null ) ) {
 			$this->error( "invalid IMAP password.", true );
+		} else {
+			$imappass = ( ( $wgIMAPpass === null ) ?  $imappass : $wgIMAPpass );
 		}
 		if ( $wgIMAPserver === null ) {
 			$this->error( "invalid IMAP server.", true );
 		}
-		$conn = imap_open( $wgIMAPserver, $wgIMAPuser, $wgIMAPpass ) or die( imap_last_error() );
+		$conn = imap_open( $wgIMAPserver, $imapuser, $imappass ) or die( imap_last_error() );
 		$num_msgs = imap_num_recent( $conn );
 
 		# start bounce classs
@@ -34,7 +38,7 @@ class BounceHandlerClearance extends Maintenance {
 		for ( $n=1; $n <= $num_msgs; $n++) {
 			$bounce = imap_fetchheader( $conn, $n ).imap_body( $conn, $n ); //entire message
 			$multiArray = $bouncehandler->get_the_facts($bounce);
-			if ( !empty($multiArray[0]['action'] ) && !empty( $multiArray[0]['status'] ) 
+			if ( !empty($multiArray[0]['action'] ) && !empty( $multiArray[0]['status'] )
 				&& !empty( $multiArray[0]['recipient'] ) ) {
 				if ( $multiArray[0]['action'] == 'failed' ) {
 					$email_addresses[$multiArray[0]['recipient']]++; //increment number of failures
@@ -48,8 +52,8 @@ class BounceHandlerClearance extends Maintenance {
 				# mark for deletion
 				foreach ( $delete_addresses[$key] as $delnum ) imap_delete( $conn, $delnum );
 			} //if failed more than $delete times
-	  	} //foreach
-	  	# delete messages
+		} //foreach
+		# delete messages
 		imap_expunge($conn);
 
 		# close
@@ -58,7 +62,7 @@ class BounceHandlerClearance extends Maintenance {
 }
 $maintClass = 'BounceHandlerClearance';
 if( defined('RUN_MAINTENANCE_IF_MAIN') ) {
-  require_once( RUN_MAINTENANCE_IF_MAIN );
+	require_once( RUN_MAINTENANCE_IF_MAIN );
 } else {
-  require_once( DO_MAINTENANCE ); # Make this work on versions before 1.17
+	require_once( DO_MAINTENANCE ); # Make this work on versions before 1.17
 }
